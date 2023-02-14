@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
-import Home from "./pages/Home";
+import Home from "./Pages/Home";
 
 function App() {
 	const [name, setName] = useState("");
