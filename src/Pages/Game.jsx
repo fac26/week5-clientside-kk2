@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import "./game.css";
 
 import cover from "../assets/cover.jpg";
 import pic_1 from "../assets/1.jpg";
@@ -20,10 +21,13 @@ const cardImages = [
 
 function Game({ name }) {
 	const [cards, setCards] = useState([]);
+	const [turns, setTurns] = useState(0);
+
 	const [firstChoice, setFirstChoice] = useState(null);
 	const [secondChoice, setSecondChoice] = useState(null);
 
-	function shuffledCards() {
+	// Function to shuffle array of cards
+	const shuffledArray = () => {
 		const allCards = [...cardImages, ...cardImages]
 			.sort(() => 0.5 - Math.random())
 			.map((card) => ({
@@ -32,26 +36,21 @@ function Game({ name }) {
 				matched: false,
 				clicked: false,
 			}));
-			
+		// gives unique id to card
 		setCards(allCards);
-	}
+		setTurns(0);
+	};
 
-	function handleChoice(card) {
-		if (firstChoice) {
-			setSecondChoice(card);
-		} else {
-			setFirstChoice(card);
-		}
-	}
-
-	function reset() {
-		setFirstChoice(null);
-		setSecondChoice(null);
-	}
+	//Links the src image and id
+	const handleChoice = (card) => {
+		firstChoice ? setSecondChoice(card) : setFirstChoice(card);
+	};
 
 	useEffect(() => {
 		if (firstChoice && secondChoice) {
 			if (firstChoice.src === secondChoice.src) {
+				// updates status to true
+
 				setCards((prevCards) => {
 					return prevCards.map((card) => {
 						if (card.src === firstChoice.src) {
@@ -61,12 +60,19 @@ function Game({ name }) {
 						}
 					});
 				});
+
 				reset();
 			} else {
-				setTimeout(() => reset(), 1300);
+				setTimeout(() => reset(), 1000);
 			}
 		}
 	}, [firstChoice, secondChoice]);
+
+	const reset = () => {
+		setFirstChoice(null);
+		setSecondChoice(null);
+		console.log("been reset");
+	};
 
 	return (
 		<div className="game-page">
@@ -74,7 +80,7 @@ function Game({ name }) {
 			<p>Welcome {name}</p>
 			<p>Click the button to begin</p>
 			<div className="btn-container">
-				<button className="btn" onClick={shuffledCards}>
+				<button className="btn" onClick={shuffledArray}>
 					Play!
 				</button>
 				<Link className="route-link" to="/">
@@ -92,12 +98,12 @@ function Game({ name }) {
 										: "")
 							}
 						>
-							<img className="back" src={card.src} />
+							<img className="back" src={card.src}></img>
 							<img
 								className="cover"
 								src={cover}
 								onClick={() => handleChoice(card)}
-							/>
+							></img>
 						</div>
 					</div>
 				))}

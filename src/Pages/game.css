@@ -1,0 +1,63 @@
+body {
+	margin: 0;
+}
+
+h1 {
+	text-align: center;
+}
+
+.game-page {
+	text-align: center;
+}
+
+.btn {
+	cursor: pointer;
+	border: none;
+	color: black;
+	background-color: white;
+	text-decoration: none;
+	padding: 0 1rem;
+	margin-right: 1rem;
+	border-radius: 1rem;
+	font-size: 1rem;
+}
+
+.btn-container {
+	margin: 2rem 0;
+}
+
+a {
+	cursor: pointer;
+	border: none;
+	color: black;
+	background-color: white;
+	text-decoration: none;
+	padding: 0 1rem;
+	border-radius: 1rem;
+	font-size: 1rem;
+}
+
+.card-grid {
+	display: grid;
+	grid-template-columns: auto auto auto;
+}
+/* .card-grid::hover{
+  cursor: pointer;
+} */
+.card {
+	position: relative;
+	margin: 3px;
+}
+
+.cover:hover {
+	cursor: alias;
+}
+
+.card .back {
+	transform: rotateY(90deg);
+	position: absolute;
+}
+
+.flipped .back {
+	transform: rotateY(0deg);
+}
