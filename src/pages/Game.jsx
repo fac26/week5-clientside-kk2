@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { cardImages, coverImage } from "../components/Images";
 import Link from "../components/Route";
+import Board from "../components/Board";
 import Button from "../components/Button";
 import "./game.css";
 
@@ -25,15 +26,14 @@ function Game({ name }) {
 		setCards(shuffledCards);
 	}
 
-	function handleChoice(card) {
-		firstChoice ? setSecondChoice(card) : setFirstChoice(card);
-	}
-
 	function resetChoice() {
 		setFirstChoice(null);
 		setSecondChoice(null);
 	}
 
+	function handleChoice(card) {
+		firstChoice ? setSecondChoice(card) : setFirstChoice(card);
+	}
 
 	useEffect(() => {
 		if (firstChoice && secondChoice) {
@@ -49,7 +49,6 @@ function Game({ name }) {
 		}
 	}, [firstChoice, secondChoice]);
 
-	
 	return (
 		<div className="game-page">
 			<h1>Memorize it!</h1>
@@ -57,27 +56,13 @@ function Game({ name }) {
 			<p>Click the button to begin</p>
 			<Button onClick={newCards} name="Start" />
 			<Link to="/" name="Home" />
-			<div className="card-grid">
-				{cards.map((card) => (
-					<div key={card.id} className="card">
-						<div
-							className={
-								(card.clicked =
-									card === firstChoice || card === secondChoice || card.matched
-										? "flipped"
-										: "")
-							}
-						>
-							<img className="back" src={card.src} />
-							<img
-								className="cover"
-								src={coverImage.src}
-								onClick={() => handleChoice(card)}
-							/>
-						</div>
-					</div>
-				))}
-			</div>
+			<Board
+				cards={cards}
+				cover={coverImage}
+				handleChoice={handleChoice}
+				firstChoice={firstChoice}
+				secondChoice={secondChoice}
+			/>
 		</div>
 	);
 }
