@@ -29,35 +29,27 @@ function Game({ name }) {
 		firstChoice ? setSecondChoice(card) : setFirstChoice(card);
 	}
 
+	function resetChoice() {
+		setFirstChoice(null);
+		setSecondChoice(null);
+	}
+
+
 	useEffect(() => {
 		if (firstChoice && secondChoice) {
 			if (firstChoice.src === secondChoice.src) {
-				// updates status to true
-
-				setCards((prevCards) => {
-					return prevCards.map((card) => {
-						if (card.src === firstChoice.src) {
-							return { ...card, matched: true };
-						} else {
-							return card;
-						}
-					});
-				});
-				resetGame();
+				firstChoice.matched = true;
+				secondChoice.matched = true;
+				resetChoice();
 			} else {
 				setTimeout(() => {
-					resetGame();
+					resetChoice();
 				}, 1000);
 			}
 		}
 	}, [firstChoice, secondChoice]);
 
-	function resetGame() {
-		setFirstChoice(null);
-		setSecondChoice(null);
-		console.log("been reset");
-	}
-
+	
 	return (
 		<div className="game-page">
 			<h1>Memorize it!</h1>
