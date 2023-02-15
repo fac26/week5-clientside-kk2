@@ -1,5 +1,7 @@
 # Project Title: Memorize it! :brain:
 
+Deployment https://memorizeit.netlify.app
+
 ## A client-side app made using React.js
 
 Memorize it! is an interactive game of Memory Cards built using React.js  :heart_decoration:
