@@ -24,22 +24,23 @@ Memorize it! is an interactive game of Memory Cards built using React.js  :heart
 
 - [x] As a player, I want to see a timer indicating the remaining time to complete the game.
 
-
 - [x] As a player, I want to see a message indicating whether I won or lost the game.
+
+- [x] Styled for a professional user-experience.
 
 
 #### Stretch Goal:
 
+- [x] Save the state to localstorage so the player leave the page and come back later
 
 #### Instructions for Running and Deploying:
 
 1. Clone the repository and navigate to the project directory.
-Run the command npm install to install the required dependencies.
-Run the command npm run dev to start the local development server.
-Open your web browser and navigate to http://localhost:3000 to play the game.
-To deploy the game to Netlify, create a new site from Git and choose the GitHub repository as the source.
-Choose the build settings and click "Deploy site".
-Every time you push to the main branch of the repository, the site will be redeployed on Netlify.
+2. Run the command `npm install` to install the required dependencies.
+3. Run the command `npm run dev` to start the local development server.
+4. Open your web browser and navigate to http://localhost:3000 to play the game.
+5. To play the game in Netlify, go to https://memorizeit.netlify.app.
+
 
 #### Contributing
 
