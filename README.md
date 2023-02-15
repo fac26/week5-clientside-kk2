@@ -6,6 +6,8 @@ Deployment https://memorizeit.netlify.app
 
 Memorize it! is an interactive game of Memory Cards built using React.js  :heart_decoration:
 
+no win condition, game works
+
 
 #### Technical Requirements:
 
@@ -17,21 +19,16 @@ Memorize it! is an interactive game of Memory Cards built using React.js  :heart
 #### User Stories:
 
 - [x] As a player, I want to be able to start a new game.
-
 - [x] As a player, I want to be able to flip cards and see the numbers/pictures on them.
-
 - [x] As a player, I want to be able to pair cards with the same number/picture on them.
-
 - [x] As a player, I want to see a timer indicating the remaining time to complete the game.
-
 - [x] As a player, I want to see a message indicating whether I won or lost the game.
-
 - [x] Styled for a professional user-experience.
 
 
 #### Stretch Goal:
 
-- [x] Save the state to localstorage so the player leave the page and come back later
+- [ ] Save the state to localstorage so the player leave the page and come back later
 
 #### Instructions for Running and Deploying:
 
