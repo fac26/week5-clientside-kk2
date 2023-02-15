@@ -1,34 +1,33 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import cardImages from "../components/Images";
+import { cardImages, coverImage } from "../components/Images";
+import Link from "../components/Route";
+import Button from "../components/Button";
 import "./game.css";
 
 function Game({ name }) {
 	const [cards, setCards] = useState([]);
-	const [turns, setTurns] = useState(0);
-
 	const [firstChoice, setFirstChoice] = useState(null);
 	const [secondChoice, setSecondChoice] = useState(null);
 
-	// Function to shuffle array of cards
-	const shuffledArray = () => {
-		const allCards = [...cardImages, ...cardImages]
-			.sort(() => 0.5 - Math.random())
-			.map((card) => ({
+	const shuffledCards = cardImages
+		.concat(cardImages)
+		.sort(() => Math.random() - 0.5)
+		.map((card) => {
+			return {
 				...card,
 				id: Math.random(),
-				matched: false,
 				clicked: false,
-			}));
-		// gives unique id to card
-		setCards(allCards);
-		setTurns(0);
-	};
+				matched: false,
+			};
+		});
 
-	//Links the src image and id
-	const handleChoice = (card) => {
+	function newCards() {
+		setCards(shuffledCards);
+	}
+
+	function handleChoice(card) {
 		firstChoice ? setSecondChoice(card) : setFirstChoice(card);
-	};
+	}
 
 	useEffect(() => {
 		if (firstChoice && secondChoice) {
@@ -44,33 +43,28 @@ function Game({ name }) {
 						}
 					});
 				});
-
-				reset();
+				resetGame();
 			} else {
-				setTimeout(() => reset(), 1000);
+				setTimeout(() => {
+					resetGame();
+				}, 1000);
 			}
 		}
 	}, [firstChoice, secondChoice]);
 
-	const reset = () => {
+	function resetGame() {
 		setFirstChoice(null);
 		setSecondChoice(null);
 		console.log("been reset");
-	};
+	}
 
 	return (
 		<div className="game-page">
-			<h1>Flip Flip</h1>
+			<h1>Memorize it!</h1>
 			<p>Welcome {name}</p>
 			<p>Click the button to begin</p>
-			<div className="btn-container">
-				<button className="btn" onClick={shuffledArray}>
-					Play!
-				</button>
-				<Link className="route-link" to="/">
-					Home
-				</Link>
-			</div>
+			<Button onClick={newCards} name="Start" />
+			<Link to="/" name="Home" />
 			<div className="card-grid">
 				{cards.map((card) => (
 					<div key={card.id} className="card">
@@ -85,7 +79,7 @@ function Game({ name }) {
 							<img className="back" src={card.src} />
 							<img
 								className="cover"
-								src={cardImages[0].src}
+								src={coverImage.src}
 								onClick={() => handleChoice(card)}
 							/>
 						</div>

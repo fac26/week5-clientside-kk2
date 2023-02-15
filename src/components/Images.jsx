@@ -6,8 +6,7 @@ import pic_4 from "../assets/4.jpg";
 import pic_5 from "../assets/5.jpg";
 import pic_6 from "../assets/6.jpg";
 
-const cardImages = [
-	{ src: cover },
+export const cardImages = [
 	{ src: pic_1 },
 	{ src: pic_2 },
 	{ src: pic_3 },
@@ -16,4 +15,4 @@ const cardImages = [
 	{ src: pic_6 },
 ];
 
-export default cardImages;
+export const coverImage = { src: cover };
