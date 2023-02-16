@@ -9,19 +9,16 @@ import "./game.css";
 function Game({ name }) {
 	const [cards, setCards] = useState([]);
 	const [gameStarted, setGameStarted] = useState(false);
-	const [gameWon, setGameWon] = useState(false); //TODO: does nothing yet
 	const [firstChoice, setFirstChoice] = useState(null);
 	const [secondChoice, setSecondChoice] = useState(null);
 
-	//TODO: why cards.every not work?
-
 	const shuffledCards = cardImages
 		.concat(cardImages)
-		.sort(() => Math.random() - 0.5) //TODO: probably modulo?
+		.sort(() => Math.random() - 0.5)
 		.map((card) => {
 			return {
 				...card,
-				id: Math.random(), //TODO: why not use index?
+				id: Math.random(),
 				clicked: false,
 				matched: false,
 			};
@@ -39,12 +36,9 @@ function Game({ name }) {
 
 	function handleChoice(card) {
 		firstChoice ? setSecondChoice(card) : setFirstChoice(card);
-		//TODO: why not just setFirstChoice(card) and setSecondChoice(card)?
-		//TODO: set gameWon to true if all cards are matched here?
 	}
 
 	useEffect(() => {
-		//TODO: understand
 		if (firstChoice && secondChoice) {
 			if (firstChoice.src === secondChoice.src) {
 				firstChoice.matched = true;
@@ -63,7 +57,7 @@ function Game({ name }) {
 			<p>Click the button to begin</p>
 			<Button onClick={newCards} name="Start" />
 			<Route to="/" name="Home" />
-			{gameStarted ? ( //TODO: if gameWon is true show win screen instead
+			{gameStarted && (
 				<>
 					<Timer />
 					<Board
@@ -74,11 +68,9 @@ function Game({ name }) {
 						secondChoice={secondChoice}
 					/>
 				</>
-			) : null}
+			)}
 		</div>
 	);
 }
-
-//TODO: work
 
 export default Game;

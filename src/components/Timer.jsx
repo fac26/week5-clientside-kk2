@@ -15,7 +15,10 @@ export default function Timer() {
 	return (
 		<div>
 			{timeRemaining === 0 ? (
-				<h1>Time up!</h1>
+				<>
+					<h1>You win!!</h1>
+					<h2>Congratulations!</h2>
+				</>
 			) : (
 				<h1>{timeRemaining} seconds remaining!</h1>
 			)}
